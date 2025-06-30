@@ -1,12 +1,16 @@
-package ru.practicum.shareit.user.dto;
+package ru.practicum.shareit.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDto {
     private Long id;
     @NotBlank
@@ -14,4 +18,9 @@ public class UserDto {
     @NotBlank
     @Email
     private String email;
+
+    public UserDto(Long id,String name) {
+        this.name = name;
+        this.id = id;
+    }
 }
