@@ -1,4 +1,4 @@
-package ru.practicum.shareit.item;
+package ru.practicum.shareit.item.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemDto {
+public class ItemShortDto {
     private Long id;
     @NotBlank
     private String name;
@@ -19,9 +19,4 @@ public class ItemDto {
     private String description;
     @NotNull
     private Boolean available;
-
-    public ItemDto(Long id,String name){
-        this.id = id;
-        this.name = name;
-    }
 }

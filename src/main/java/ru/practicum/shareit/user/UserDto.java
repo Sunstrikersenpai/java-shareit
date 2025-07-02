@@ -19,7 +19,7 @@ public class UserDto {
     @Email
     private String email;
 
-    public UserDto(Long id,String name) {
+    public UserDto(Long id, String name) {
         this.name = name;
         this.id = id;
     }

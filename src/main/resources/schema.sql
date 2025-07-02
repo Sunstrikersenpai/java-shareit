@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS bookings CASCADE;
 DROP TABLE IF EXISTS items CASCADE;
 DROP TABLE IF EXISTS item_requests CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
+DROP TABLE IF EXISTS comments CASCADE;
 
 CREATE TABLE IF NOT EXISTS users
 (
@@ -26,7 +27,7 @@ CREATE TABLE IF NOT EXISTS items
     id           BIGINT GENERATED ALWAYS AS IDENTITY NOT NULL,
     name         VARCHAR(100)                        NOT NULL,
     description  VARCHAR(1000),
-    is_available BOOLEAN,
+    is_available BOOLEAN default true,
     owner_id     BIGINT                              NOT NULL,
     request_id   BIGINT,
     CONSTRAINT pk_item PRIMARY KEY (id),
@@ -49,9 +50,10 @@ CREATE TABLE IF NOT EXISTS bookings
 CREATE TABLE IF NOT EXISTS comments
 (
     id        BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    text      varchar(1000) NOT NULL,
-    item_id   BIGINT        NOT NULL,
-    author_id BIGINT        NOT NULL,
+    text      varchar(1000)               NOT NULL,
+    item_id   BIGINT                      NOT NULL,
+    author_id BIGINT                      NOT NULL,
+    created   TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT now(),
     CONSTRAINT fk_comment_item FOREIGN KEY (item_id) REFERENCES items (id) ON DELETE CASCADE,
     CONSTRAINT fk_comment_user FOREIGN KEY (author_id) REFERENCES users (id) ON DELETE CASCADE
 );

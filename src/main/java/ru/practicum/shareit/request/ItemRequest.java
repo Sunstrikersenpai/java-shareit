@@ -1,9 +1,9 @@
 package ru.practicum.shareit.request;
 
+import jakarta.persistence.*;
 import lombok.Data;
 import ru.practicum.shareit.user.User;
 
-import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Data

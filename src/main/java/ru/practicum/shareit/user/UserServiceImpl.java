@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
                 && isEmailExists(userDto.getEmail())) {
             throw new EmailExistsException("Email exists");
         }
-        patchUser(existing,userDto);
+        patchUser(existing, userDto);
         return UserMapper.toDto(userRepository.save(existing));
     }
 
