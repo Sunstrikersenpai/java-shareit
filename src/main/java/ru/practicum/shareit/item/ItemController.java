@@ -1,10 +1,12 @@
-package ru.practicum.shareit.item.controller;
+package ru.practicum.shareit.item;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.shareit.item.dto.CommentCreateDto;
+import ru.practicum.shareit.item.dto.CommentDto;
 import ru.practicum.shareit.item.dto.ItemDto;
-import ru.practicum.shareit.item.service.ItemService;
+import ru.practicum.shareit.item.dto.ItemShortDto;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class ItemController {
     @PostMapping
     public ItemDto create(
             @RequestHeader("X-Sharer-User-Id") Long ownerId,
-            @RequestBody @Valid ItemDto item) {
+            @RequestBody @Valid ItemShortDto item) {
         return itemService.create(ownerId, item);
     }
 
@@ -26,7 +28,7 @@ public class ItemController {
     public ItemDto update(
             @RequestHeader("X-Sharer-User-Id") Long ownerId,
             @PathVariable Long itemId,
-            @RequestBody ItemDto item
+            @RequestBody ItemShortDto item
     ) {
         return itemService.update(ownerId, itemId, item);
     }
@@ -42,7 +44,7 @@ public class ItemController {
     public List<ItemDto> findAllByOwner(
             @RequestHeader("X-Sharer-User-Id") Long ownerId
     ) {
-        return itemService.findAllByOwner(ownerId);
+        return itemService.findAllByOwnerId(ownerId);
     }
 
     @GetMapping("/search")
@@ -57,6 +59,15 @@ public class ItemController {
             @PathVariable Long itemId,
             @RequestHeader("X-Sharer-User-Id") Long ownerId
     ) {
-        itemService.delete(itemId,ownerId);
+        itemService.delete(itemId, ownerId);
+    }
+
+    @PostMapping("{itemId}/comment")
+    public CommentDto createComment(
+            @Valid @RequestBody CommentCreateDto commentCreateDto,
+            @RequestHeader("X-Sharer-User-Id") Long userId,
+            @PathVariable Long itemId
+    ) {
+        return itemService.createComment(commentCreateDto, userId, itemId);
     }
 }
