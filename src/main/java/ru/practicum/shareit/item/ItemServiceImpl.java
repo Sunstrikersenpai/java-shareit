@@ -115,7 +115,7 @@ public class ItemServiceImpl implements ItemService {
         User user = userService.getUserById(userId);
         Item item = getItemById(itemId);
 
-        if (!bookingRepository.existsByBookerIdAndItemIdAndEndBefore(
+        if (!bookingRepository.existsByBookerIdAndItemIdAndEndTimeBefore(
                 userId, itemId, LocalDateTime.now()
         )) {
             throw new ValidationException("No booking for user");

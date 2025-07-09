@@ -43,14 +43,14 @@ public class BookingRepositoryImpl implements CustomBookingRepository {
         switch (state) {
             case CURRENT -> predicate
                     .and(b.status.eq(Status.APPROVED))
-                    .and(b.start.before(now))
-                    .and(b.end.after(now));
+                    .and(b.startTime.before(now))
+                    .and(b.endTime.after(now));
             case PAST -> predicate
                     .and(b.status.eq(Status.APPROVED))
-                    .and(b.end.before(now));
+                    .and(b.endTime.before(now));
             case FUTURE -> predicate
                     .and(b.status.eq(Status.APPROVED))
-                    .and(b.start.after(now));
+                    .and(b.startTime.after(now));
             case WAITING, REJECTED -> predicate
                     .and(b.status.eq(Status.valueOf(state.name())));
             case ALL -> {
@@ -63,7 +63,7 @@ public class BookingRepositoryImpl implements CustomBookingRepository {
                 .join(b.item).fetchJoin()
                 .join(b.booker).fetchJoin()
                 .where(predicate)
-                .orderBy(b.start.desc())
+                .orderBy(b.startTime.desc())
                 .fetch();
     }
 }

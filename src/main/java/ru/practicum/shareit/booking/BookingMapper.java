@@ -11,28 +11,28 @@ import ru.practicum.shareit.user.UserMapper;
 
 public class BookingMapper {
 
-    public static BookingDto toDto(Booking obj, UserDto booker, ItemDto item) {
-        return BookingDto.builder().id(obj.getId()).status(obj.getStatus())
-                .start(obj.getStart()).end(obj.getEnd()).booker(booker).item(item).build();
+    public static BookingDto toDto(Booking booking, UserDto booker, ItemDto item) {
+        return BookingDto.builder().id(booking.getId()).status(booking.getStatus())
+                .startTime(booking.getStartTime()).endTime(booking.getEndTime()).booker(booker).item(item).build();
     }
 
     public static Booking toEntity(BookingShortDto dto, User booker, Item item) {
         Booking booking = new Booking();
         booking.setItem(item);
         booking.setBooker(booker);
-        booking.setStart(dto.getStart());
-        booking.setEnd(dto.getEnd());
+        booking.setStartTime(dto.getStartTime());
+        booking.setEndTime(dto.getEndTime());
         return booking;
     }
 
-    public static BookingDto toDto(Booking obj) {
+    public static BookingDto toDto(Booking booking) {
         return BookingDto.builder()
-                .booker(UserMapper.toDto(obj.getBooker()))
-                .item(ItemMapper.toDto(obj.getItem()))
-                .id(obj.getId())
-                .start(obj.getStart())
-                .end(obj.getEnd())
-                .status(obj.getStatus())
+                .booker(UserMapper.toDto(booking.getBooker()))
+                .item(ItemMapper.toDto(booking.getItem()))
+                .id(booking.getId())
+                .startTime(booking.getStartTime())
+                .endTime(booking.getEndTime())
+                .status(booking.getStatus())
                 .build();
     }
 }

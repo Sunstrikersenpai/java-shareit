@@ -1,5 +1,6 @@
 package ru.practicum.shareit.booking.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -21,9 +22,11 @@ public class BookingShortDto {
 
     @NotNull
     @Future
-    private LocalDateTime start;
+    @JsonProperty("start")
+    private LocalDateTime startTime;
 
     @NotNull
     @Future
-    private LocalDateTime end;
+    @JsonProperty("end")
+    private LocalDateTime endTime;
 }

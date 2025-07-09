@@ -30,7 +30,7 @@ public interface BookingRepository extends JpaRepository<Booking, Long>, CustomB
             """, nativeQuery = true)
     List<Booking> findNextBookings(List<Long> itemIds);
 
-    boolean existsByBookerIdAndItemIdAndEndBefore(
+    boolean existsByBookerIdAndItemIdAndEndTimeBefore(
             Long bookerId, Long itemId, LocalDateTime now
     );
 }
