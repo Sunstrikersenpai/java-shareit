@@ -32,8 +32,7 @@ class ItemRequestControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    void createRequest() throws Exception
-    {
+    void createRequest() throws Exception {
         ItemRequestShortDto input = new ItemRequestShortDto("description");
         ItemRequestDto output = new ItemRequestDto(1L, "description", LocalDateTime.now(), Collections.emptyList());
 
@@ -49,8 +48,7 @@ class ItemRequestControllerTest {
     }
 
     @Test
-    void getOwnRequests() throws Exception
-    {
+    void getOwnRequests() throws Exception {
         ItemRequestDto dto = new ItemRequestDto(1L, "description", LocalDateTime.now(), Collections.emptyList());
         Mockito.when(requestService.getOwnRequests(1L)).thenReturn(List.of(dto));
 
@@ -61,8 +59,7 @@ class ItemRequestControllerTest {
     }
 
     @Test
-    void getAllRequests() throws Exception
-    {
+    void getAllRequests() throws Exception {
         Mockito.when(requestService.getOtherUsersRequests(1L)).thenReturn(Collections.emptyList());
 
         mockMvc.perform(get("/requests/all")
@@ -72,8 +69,7 @@ class ItemRequestControllerTest {
     }
 
     @Test
-    void getRequestById() throws Exception
-    {
+    void getRequestById() throws Exception {
         ItemRequestDto dto = new ItemRequestDto(1L, "description", LocalDateTime.now(), Collections.emptyList());
 
         Mockito.when(requestService.getRequestById(1L, 1L)).thenReturn(dto);

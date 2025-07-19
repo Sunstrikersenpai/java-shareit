@@ -26,8 +26,7 @@ class UserControllerTest {
     private UserService userService;
 
     @Test
-    void createUser() throws Exception
-    {
+    void createUser() throws Exception {
         UserDto input = new UserDto(null, "name", "name@gmail.com");
         UserDto expected = new UserDto(1L, "name", "name@gmail.com");
 
@@ -45,8 +44,7 @@ class UserControllerTest {
     }
 
     @Test
-    void getUser() throws Exception
-    {
+    void getUser() throws Exception {
         long userId = 1;
         UserDto expected = new UserDto(userId, "name", "name@gmail.com");
 
@@ -60,8 +58,7 @@ class UserControllerTest {
     }
 
     @Test
-    void updateUser() throws Exception
-    {
+    void updateUser() throws Exception {
         long userId = 1;
         UserDto input = new UserDto(null, "Updated", "updated@gmail.com");
         UserDto expected = new UserDto(userId, "Updated", "updated@gmail.com");
@@ -78,8 +75,7 @@ class UserControllerTest {
     }
 
     @Test
-    void deleteUser() throws Exception
-    {
+    void deleteUser() throws Exception {
         long userId = 1L;
 
         mockMvc.perform(delete("/users/{id}", userId))
