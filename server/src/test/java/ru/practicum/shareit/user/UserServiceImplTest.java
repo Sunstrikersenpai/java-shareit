@@ -18,8 +18,7 @@ class UserServiceImplTest {
     }
 
     @Test
-    void createUser_success()
-    {
+    void createUser_success() {
         UserDto userDto = new UserDto();
         userDto.setName("name");
         userDto.setEmail("name@gmail.com");
